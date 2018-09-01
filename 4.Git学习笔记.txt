@@ -1,0 +1,36 @@
+1.Pull Request是什么？
+  Pull Request是自己修改源代码后，请求对方仓库采纳该修改时采取的一种行为。
+
+2.发送Pull Request的流程如下：
+  1)在GitHub上进行fork
+  2)将fork到的仓库clone到本地开发环境
+  3)在本地环境中创建特性分支
+  4)对特性分支进行代码修改并进行提交
+  5)将特性分支push到仓库
+  6)在GitHub上Fork来源仓库发送pull request
+
+2.1实例演示
+  1)在GitHub上选择自己感兴趣的项目，点击fork按钮创建自己的仓库(源仓库地址：https://github.com/ituring/first-pr)
+  2)使用clone操作将仓库内建当前的开发环境：git clone git@github.com:yjh6398/first-pr
+  3)创建任意名称的特性分支并切换，用来发送pull request：git checkout -b work
+  4)在此分支下进行添加代码、修改bug等操作
+  5)提交修改，为了确保修改正确进行，建议先用git diff 查看工作区和暂存区的区别，确认无误后，提交代码到本地仓库：git add index.html—>git commit -m "add my impression"
+  6)创建远程分支，git push origin work.远程分支的name建议与本地分支的name一致
+  7)登录GitHub并切换到work分支，点击create Pull Request,填写评论，确认无误后，点击send pull request
+
+3.仓库维护：fork或者clone来的仓库，一旦置之不顾就会离最新的源代码越来越远，那么如何让仓库保持最新状态？
+  fork或者clone来的仓库与原仓库没有任何关联，所以需要将原仓库设置为远程仓库，从该仓库中获取数据与本地仓库进行合并，让本地库保持最新状态。
+  1)将octocat/Spoon-Knife作为原仓库，在GitHub上进行fork，然后克隆:git clone git@github.com:yjh6398/Spoon-Knife.git
+  2)给源仓库设置名称：git remote add upstream git://github.com/octocat/Spoon-Knife.git.该环节只需要设置一次，upstream是原仓库的标识符
+  3)获取最新数据，并将upstream/master与自己仓库的当前分支master进行合并：git fetch upstream —>git merge upstream/master
+
+4.接受pull request的流程
+  接受pull request只需要点击Merge pull request按钮即可，pull request的内容就会自动合并到仓库。但是为了验证别人的修改是否有效、有用，一般需要在本地开发环境中进行如下的准备工作
+  1)将接受方的仓库更新至最新状态。如果已经clone过，直接使用pull等操作更新至最新状态：git clone git@github.com:yjh6398/first-pr.git
+  2)获取发送方的远程仓库。将pull request发送方的仓库设置为本地仓库的远程仓库，获取发送方的仓库数据：git remote add PR发送者/first-pr.git—>git fetch PR发送者
+  3)创建用于检查的分支：git checkout -b pr1
+  4)合并。将已经fetch完毕的“PR发送者/work”的修改内容与pr1分支进行合并：git merge PR发送者/work
+  5)删除分支。检查结束后，分支pr1就没用了，切换至pr1之外的分支，删除pr1分支：git branch -D pr1
+  6)采纳pull request。点击Merge pull request进行自动合并。也可以选择手动合并，步骤如下：
+  1.合并到主分支：git checkout gh-pages—>git merge PR发送者/work
+  2.push修改内容：git push
