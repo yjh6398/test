@@ -1,0 +1,28 @@
+1.参照数目安装Git,设置环境变量，并完成Git的初始化设置(设置用户姓名和邮箱地址)
+  tip：安装了Git后，可以创建本地仓库，并把相应的文件存储在本地库中，为了将代码push到Github，还需要做以下额外工作
+
+2.使用Github的前提工作
+  (1)完成Github账户的创建
+  (2)设置SSH key，参照书籍完成，注意："your email@example.com"应该使用创建账户时用的邮箱地址
+  (3)添加公开密钥，title填写适当的名称，key粘贴id_rsa.pub的内容，完成后，会收到一封提示成功操作的邮件
+  (4)与Github进行验证与通信：ssh -T git@github.com
+
+3.牛刀小试-提交本地代码到Github
+  (1)git init //把当前目录变成Git可以管理的仓库
+  (2)git add README.md //文件添加到仓库
+  (3)git add . //将当前目录下所有未追踪到的文件全部添加
+  (4)git commit -m "first commit" //把文件提交到仓库
+  (5)git remote add origin git@github.com:yjh6398/test.git //关联远程仓库，yjh6398为Github账户名，test为Github上的仓库名
+  (6)git push -u origin master //把本地库的所有内容都推送到远程库上
+
+4.错误fatal: remote origin already exists的解决方法
+  (1)git remote rm origin //删除远程仓库
+  (2)或者直接执行以下步骤：
+     1.git init //把当前目录变成Git可以管理的仓库
+     2.git add README.md //文件添加到仓库
+     3.git add . //将当前目录下所有未追踪到的文件全部添加
+     4.git commit -m "first commit" //把文件提交到仓库
+     5.git push -u origin master //把本地库的所有内容都推送到远程库上
+
+
+

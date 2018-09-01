@@ -1,0 +1,76 @@
+1.mkdir test：在当前工作路径下生成目录名为test的文件夹
+
+2.git init:把当前目录进行仓库初始化，并且生成隐藏目录.git，这个就是Git的版本目录，里面会有配置、分支、钩子等相关文件
+
+3.Git本地文件管理常用命令
+  1.add和commit命令添加文件以及提交到版本库，git status命令用于查看工作状态。本地仓库名为test，示例如下：
+    1)cd test //进入建立的工作仓库目录
+    2)touch readme.txt //创建文件用于测试
+    3)git add readme.txt  // 保存指定文件到暂存区
+    4)git commit -m "readme.txt" //正式提交文件到版本库
+    5)git status //追踪工作状态，工作完毕后，要保持工作区最后是clean状态
+
+  2.git rm 命令删除文件，删除后仍然需要进行一次commit才算提交删除，例如：要删除文件java.txt
+    1)git rm java.txt
+    2)git commit -m "delete"    //该操作执行后，本地库中的java.txt文件被删除
+    3)git push -u origin master //该操作完成后，远程库中的java.txt文件被删除
+
+  3.git mv命令重命名，修改后依然需要commit操作
+    1)git mv java.txt java1.txt
+    2)git commit -m "修改"      //该操作执行后，本地库中的java.txt文件名被修改
+    3)git push -u origin master //该操作执行后，本地库中的java.txt文件名被修改
+    4)git status //追踪工作状态，工作完毕后，要保持工作区最后是clean状态
+
+  4.git log命令查看Git日志
+    1)git log //该命令可以看到每次进行版本修改时的日志信息
+    2)git log --pretty=oneline //单行显示精简化的日志
+    3)git log -2  //查看最近两次提交的日志
+    4)git shortlog //查看每个用户提交版本库的统计日志
+    5)git log -C index.php //查看指定文件的修改历史
+
+  5.使用branch和checkout命令进行Git分支管理
+    1)git branch //查看分支，当前分支会有雪花标识
+    2)git branch -a //查看本地仓库和远程仓库的分支
+    3)git branch new //创建一个名为new的分支，但不会切换到该分支
+    4git checkout new  //切换到new分支
+    4)git checkout -b new //创建一个名为new的分支，并切换过去
+    5)git branch -m oldname newname //修改分支名字
+    6)git branch -d new //删除分支new
+    7)git merge test //将分支test合并到当前分支
+    8)git log --graph //以图表方式查看分支
+
+  6.使用tag命令进行Git的标签管理
+    1)git tag v1 //为当前工作仓库定义标签v1
+    2)git tag  //查看标签
+    3)git tag -d v1 //删除标签v1
+
+  7.使用git diff查看更改前后的差别      
+    1)git diff filename                    //比较文件在工作区和暂存区的区别
+    2)git diff --cached filename           //比较暂存区与最新版本库的区别
+    3)git diff HEAD filename               //比较工作区和最新版本
+    4)git diff commit-id filename          //比较工作区与指定的commit-id的差别
+    5)git diff --cached commit-id filename //比较暂存区与指定的commit-id的差别
+    6)git diff commit-id commit-id         //比较两个commit-id的差异
+
+  8.推送到远程仓库
+    1)使用git add remote命令将Github上创建的仓库设置为本地仓库的远程库
+      git remote add origin git@github.com:yjh6398/test.git  //yjh6398为账户名，test为远程仓库名
+    2)使用git push命令推送至远程仓库
+      git push -u origin master  
+      //该命令将当前分支的内容推送至远程仓库origin的master分支，-u参数将origin仓库的master分支设置为本地库当前分支的上游
+      //添加了此参数，将来运行git pull命令从远程库获取内容时，本地仓库的这个分支可以直接从origin的master分支获取，省去了另外添加参数的麻烦
+    3)推送至master以外的分支
+      git checkout -b B
+      git push -u origin B
+   
+    9.从远程仓库获取
+      1)获取远程仓库
+        git clone git@github.com:yjh6398/test.git //执行以上命令后默认处于master分支
+      2)获取远程分支
+        git checkout -b 本地库分支名字 origin/branch_name //origin/branch_name：以名为origin的branch_name分支作为来源，获取了远程仓库的指定分支，在该分支上所做的修改
+        可以推送到远程仓库的指定分支
+      3)获取最新的远程仓库分支
+        git pull origin branch_name //branch_name为远程仓库上的分支名
+
+
+   
