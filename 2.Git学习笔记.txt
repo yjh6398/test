@@ -72,5 +72,10 @@
       3)获取最新的远程仓库分支
         git pull origin branch_name //branch_name为远程仓库上的分支名
 
+   9.查看本地仓库关联的远程仓库的地址
+     git remote -v
+     取消本地目录下关联的远程库
+     git remote remove origin
+
 
    
