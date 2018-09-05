@@ -11,4 +11,22 @@
            或者 git reset --hard HEAD^表示回退到上一版本，HEAD^^表示回退到上上个版本。
            穿梭前，用git log 查看提交历史，以便确定回退到哪个版本；要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本
 
+3.Git管理版本
+   1)本地分支版本回退的方法
+     I. git reflog   //找到要回退版本的commit id
+     II.git reset --hard commit id
+   2)自己的远程分支版本回退的方法
+     I. git reflog
+        git reset --hard commit id  //回退本地版本
+     II.git push -f      //强制推送到远程分支，本地分支回滚后，版本将落后远程分支，必须使用强制推送覆盖远程分支，否则无法推送
+   3)公共远程分支版本回退的方法
+     Q：回滚公共远程分支和回滚自己的远程分支有什么区别？
+     A：如果回退公共远程分支，把别人的提交给丢掉了怎么办？ 
+     参考—https://blog.csdn.net/zzh920625/article/details/77140955
+     
+     
+    
+     
+     
+
 
