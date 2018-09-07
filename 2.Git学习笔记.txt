@@ -36,6 +36,7 @@
     4)git checkout -b new //创建一个名为new的分支，并切换过去
     5)git branch -m oldname newname //修改分支名字
     6)git branch -d new //删除分支new
+    7)git push origin --delete work //删除远程分支work
     7)git merge test //将分支test合并到当前分支
     8)git log --graph //以图表方式查看分支
 
