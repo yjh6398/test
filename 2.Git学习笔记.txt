@@ -11,9 +11,14 @@
     5)git status //追踪工作状态，工作完毕后，要保持工作区最后是clean状态
 
   2.git rm 命令删除文件，删除后仍然需要进行一次commit才算提交删除，例如：要删除文件java.txt
-    1)git rm java.txt
-    2)git commit -m "delete"    //该操作执行后，本地库中的java.txt文件被删除
-    3)git push -u origin master //该操作完成后，远程库中的java.txt文件被删除
+    (1)删除本地库中的文件
+       git rm java.txt
+       git commit -m "delete"    //该操作执行后，本地库中的java.txt文件被删除
+       git push -u origin master //该操作完成后，远程库中的java.txt文件被删除
+    (2)删除工作区中的文件
+       rm java.txt
+    (3)删除暂存区中的文件
+       git rm --cached java.txt
 
   3.git mv命令重命名，修改后依然需要commit操作
     1)git mv java.txt java1.txt
